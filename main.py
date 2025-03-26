@@ -1,8 +1,6 @@
 import pyautogui
-from line_profiler import LineProfiler, profile
 import time
 from datetime import datetime
-import cv2
 import numpy as np
 from pynput import mouse
 import dxcam
@@ -15,8 +13,6 @@ last_pos = None
 camera = dxcam.create(output_color="RGB") 
 
 
-
-@profile
 def get_line(region):
 
     global last_pos
@@ -43,15 +39,6 @@ def get_line(region):
     
     if pixels != [] :
         return True
-        pos = x + pixels[-1]
-        if pos <= 323 :
-            return True
-        elif last_pos :
-            v = (pos - last_pos[1]) / (int(time.time() * 1000) - last_pos[0])
-            print(v)
-            last_pos = None
-        else :
-            last_pos = (int(time.time() * 1000), pos)
 
     return False
 
