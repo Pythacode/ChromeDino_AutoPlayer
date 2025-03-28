@@ -5,6 +5,7 @@ import numpy as np
 from pynput import mouse
 import dxcam
 from PIL import Image
+from PIL import ImageGrab
 
 # Initialisation des variables
 x, y = 0, 0
@@ -16,7 +17,7 @@ camera = dxcam.create(output_color="RGB")
 def get_line(region):
 
     global last_pos
-    frame = camera.grab(region=region)
+    frame = np.array(ImageGrab.grab())
 
     if not isinstance(frame, np.ndarray) :
         return
